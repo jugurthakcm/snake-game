@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+  </head>
+  <body onload="drawSnake()">
+    <canvas id="gameCanvas" width="500px" height="500px"></canvas>
+    <button id="btn-up" onclick="changeDirection('up')">Up</button>
+    <button id="btn-down" onclick="changeDirection('down')">Down</button>
+    <button id="btn-left" onclick="changeDirection('left')">Left</button>
+    <button id="btn-right" onclick="changeDirection('right')">Right</button>
+  </body>
+  <script src="./app.js"></script>
+</html>
