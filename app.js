@@ -1,11 +1,11 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let snake = [
-  { x: 130, y: 50 },
-  { x: 110, y: 50 },
-  { x: 90, y: 50 },
-  { x: 70, y: 50 },
-  { x: 50, y: 50 },
+  { x: 120, y: 40 },
+  { x: 100, y: 40 },
+  { x: 80, y: 40 },
+  { x: 60, y: 40 },
+  { x: 40, y: 40 },
 ];
 let dx = 20;
 let dy = 0;
@@ -70,10 +70,46 @@ function drawSnake() {
   snake.forEach(drawSnakePart);
 }
 
+//Generate Random Positions for the food
+function randomFoodPosition() {
+  let num = Math.floor(Math.random() * 600);
+  if (num % 20 == 0) {
+    return num;
+  } else {
+    return randomFoodPosition();
+  }
+}
+// The Food Class
+class Food {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+// The food object
+let food = new Food(randomFoodPosition(), randomFoodPosition());
+
+// Verify if the food is eaten
+function foodEaten() {
+  if (food.x == snake[0].x && food.y == snake[0].y) {
+    food = new Food(randomFoodPosition(), randomFoodPosition());
+  }
+}
+
+// Draw the food on the canvas
+function drawFood(param) {
+  ctx.fillStyle = 'red';
+  ctx.fillRect(param.x, param.y, 20, 20);
+  ctx.strokeStyle = 'darkred';
+  ctx.strokeRect(param.x, param.y, 20, 20);
+}
+
 // Interval Function
 setInterval(() => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   createCanvas();
   moveSnake();
   drawSnake();
+  foodEaten();
+  drawFood(food);
 }, 100);
