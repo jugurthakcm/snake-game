@@ -1,13 +1,13 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let snake = [
+  { x: 130, y: 50 },
+  { x: 110, y: 50 },
   { x: 90, y: 50 },
-  { x: 80, y: 50 },
   { x: 70, y: 50 },
-  { x: 60, y: 50 },
   { x: 50, y: 50 },
 ];
-let dx = 10;
+let dx = 20;
 let dy = 0;
 
 // Create the canvas
@@ -26,27 +26,32 @@ function moveSnake() {
 }
 
 //change direction of the snake
+document.onkeydown = changeDirection;
 function changeDirection(direction) {
-  if (direction == 'up' && dy == 0) {
+  // Press arrow key UP
+  if (direction.keyCode == '38' && dy == 0) {
     dx = 0;
-    dy = -10;
+    dy = -20;
     moveSnake();
   }
 
-  if (direction == 'down' && dy == 0) {
+  // Press arrow key DOWN
+  if (direction.keyCode == '40' && dy == 0) {
     dx = 0;
-    dy = 10;
+    dy = 20;
     moveSnake();
   }
 
-  if (direction == 'left' && dx == 0) {
-    dx = -10;
+  // Press arrow key LEFT
+  if (direction.keyCode == '37' && dx == 0) {
+    dx = -20;
     dy = 0;
     moveSnake();
   }
 
-  if (direction == 'right' && dx == 0) {
-    dx = 10;
+  // Press arrow key RIGHT
+  if (direction.keyCode == '39' && dx == 0) {
+    dx = 20;
     dy = 0;
     moveSnake();
   }
@@ -55,9 +60,9 @@ function changeDirection(direction) {
 // Draw a part of the snake
 function drawSnakePart(snakePart) {
   ctx.fillStyle = 'lightgreen';
-  ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+  ctx.fillRect(snakePart.x, snakePart.y, 20, 20);
   ctx.strokeStyle = 'darkgreen';
-  ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+  ctx.strokeRect(snakePart.x, snakePart.y, 20, 20);
 }
 
 // Draw all the snake
@@ -67,7 +72,7 @@ function drawSnake() {
 
 // Interval Function
 setInterval(() => {
-  ctx.clearRect(0, 0, 500, 500);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   createCanvas();
   moveSnake();
   drawSnake();
