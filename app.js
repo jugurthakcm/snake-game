@@ -9,6 +9,7 @@ let snake = [
 ];
 let dx = 20;
 let dy = 0;
+let score = 0;
 
 // Create the canvas
 function createCanvas() {
@@ -89,11 +90,19 @@ class Food {
 // The food object
 let food = new Food(randomFoodPosition(), randomFoodPosition());
 
-// Verify if the food is eaten
+// Expand the snake if the food is eaten
 function foodEaten() {
-  if (food.x == snake[0].x && food.y == snake[0].y) {
-    food = new Food(randomFoodPosition(), randomFoodPosition());
-  }
+  snake.forEach((el) => {
+    if (food.x == el.x && food.y == el.y) {
+      food = new Food(randomFoodPosition(), randomFoodPosition());
+      snake.push({
+        x: snake[snake.length - 1].x + 20,
+        y: snake[snake.length - 1].y + 20,
+      });
+      score++;
+      document.querySelector('#score-p').innerText = score;
+    }
+  });
 }
 
 // Draw the food on the canvas
@@ -108,8 +117,25 @@ function drawFood(param) {
 setInterval(() => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   createCanvas();
+  drawFood(food);
   moveSnake();
   drawSnake();
   foodEaten();
-  drawFood(food);
-}, 100);
+}, 120);
+
+function restartGame() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  createCanvas();
+  score = 0;
+  document.querySelector('#score-p').innerText = score;
+  snake = [
+    { x: 120, y: 40 },
+    { x: 100, y: 40 },
+    { x: 80, y: 40 },
+    { x: 60, y: 40 },
+    { x: 40, y: 40 },
+  ];
+  dx = 20;
+  dy = 0;
+  food = new Food(randomFoodPosition(), randomFoodPosition());
+}

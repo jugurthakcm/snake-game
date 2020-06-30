@@ -5,15 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
     <style>
-      #gameCanvas {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .canvas {
+        margin-right: 20px;
+      }
+      .dashboard {
+        margin-left: 20px;
+      }
+      .dashboard,
+      .score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .score p {
+        font-size: 3rem;
+        margin-top: -20px;
       }
     </style>
   </head>
   <body onload="drawSnake()">
-    <canvas id="gameCanvas" width="600px" height="600px"></canvas>
+    <div class="container">
+      <div class="canvas">
+        <canvas id="gameCanvas" width="600px" height="600px"></canvas>
+      </div>
+
+      <div class="dashboard">
+        <div class="score">
+          <h1>Score</h1>
+          <p id="score-p">0</p>
+        </div>
+        <button onclick="restartGame()">Restart</button>
+      </div>
+    </div>
   </body>
   <script src="./app.js"></script>
 </html>
