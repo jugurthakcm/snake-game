@@ -138,7 +138,7 @@ function gameOver() {
     return true;
   }
 }
-
+let time = 120;
 // Interval Function
 let interval = setInterval(() => {
   createCanvas();
@@ -150,10 +150,11 @@ let interval = setInterval(() => {
   if (gameOver()) {
     clearInterval(interval);
   }
-}, 120);
+}, time);
 
 // Restart Game
 function restartGame() {
+  clearInterval(interval);
   createCanvas();
   score = 0;
   document.querySelector('#score-p').innerText = score;
@@ -179,5 +180,5 @@ function restartGame() {
     if (gameOver()) {
       clearInterval(interval);
     }
-  }, 120);
+  }, time);
 }
