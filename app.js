@@ -1,11 +1,11 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let snake = [
-  { x: 120, y: 40 },
-  { x: 100, y: 40 },
-  { x: 80, y: 40 },
-  { x: 60, y: 40 },
-  { x: 40, y: 40 },
+  { x: 120, y: 300 },
+  { x: 100, y: 300 },
+  { x: 80, y: 300 },
+  { x: 60, y: 300 },
+  { x: 40, y: 300 },
 ];
 let dx = 20;
 let dy = 0;
@@ -60,9 +60,9 @@ function changeDirection(direction) {
 
 // Draw a part of the snake
 function drawSnakePart(snakePart) {
-  ctx.fillStyle = 'lightgreen';
+  ctx.fillStyle = 'lightblue';
   ctx.fillRect(snakePart.x, snakePart.y, 20, 20);
-  ctx.strokeStyle = 'darkgreen';
+  ctx.strokeStyle = 'darkblue';
   ctx.strokeRect(snakePart.x, snakePart.y, 20, 20);
 }
 
@@ -73,7 +73,7 @@ function drawSnake() {
 
 //Generate Random Positions for the food
 function randomFoodPosition() {
-  let num = Math.floor(Math.random() * 600);
+  let num = Math.floor(Math.random() * 500);
   if (num % 20 == 0) {
     return num;
   } else {
@@ -113,6 +113,29 @@ function drawFood(param) {
   ctx.strokeRect(param.x, param.y, 20, 20);
 }
 
+//check if the snake eats its self
+function snakeDie() {
+  for (let i = 1; i < snake.length; i++) {
+    if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
+      return true;
+    }
+  }
+}
+
+// Game Over
+function gameOver() {
+  if (
+    snake[0].x > 500 ||
+    snake[0].y > 500 ||
+    snake[0].x < 0 ||
+    snake[0].y < 0 ||
+    snakeDie()
+  ) {
+    document.getElementsByClassName('over')[0].style.display = 'block';
+    document.getElementsByClassName('pop-up')[0].style.display = 'flex';
+  }
+}
+
 // Interval Function
 setInterval(() => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -121,21 +144,25 @@ setInterval(() => {
   moveSnake();
   drawSnake();
   foodEaten();
+  gameOver();
 }, 120);
 
+// Restart Game
 function restartGame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   createCanvas();
   score = 0;
   document.querySelector('#score-p').innerText = score;
   snake = [
-    { x: 120, y: 40 },
-    { x: 100, y: 40 },
-    { x: 80, y: 40 },
-    { x: 60, y: 40 },
-    { x: 40, y: 40 },
+    { x: 120, y: 300 },
+    { x: 100, y: 300 },
+    { x: 80, y: 300 },
+    { x: 60, y: 300 },
+    { x: 40, y: 300 },
   ];
   dx = 20;
   dy = 0;
   food = new Food(randomFoodPosition(), randomFoodPosition());
+  document.getElementsByClassName('over')[0].style.display = 'none';
+  document.getElementsByClassName('pop-up')[0].style.display = 'none';
 }
