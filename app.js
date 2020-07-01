@@ -13,7 +13,8 @@ let score = 0;
 
 // Create the canvas
 function createCanvas() {
-  ctx.fillStyle = 'white';
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'lightgreen';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = 'black';
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -125,31 +126,34 @@ function snakeDie() {
 // Game Over
 function gameOver() {
   if (
-    snake[0].x > 500 ||
-    snake[0].y > 500 ||
+    snake[0].x > 480 ||
+    snake[0].y > 480 ||
     snake[0].x < 0 ||
     snake[0].y < 0 ||
     snakeDie()
   ) {
+    createCanvas();
     document.getElementsByClassName('over')[0].style.display = 'block';
     document.getElementsByClassName('pop-up')[0].style.display = 'flex';
+    return true;
   }
 }
 
 // Interval Function
-setInterval(() => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+let interval = setInterval(() => {
   createCanvas();
   drawFood(food);
   moveSnake();
   drawSnake();
   foodEaten();
   gameOver();
+  if (gameOver()) {
+    clearInterval(interval);
+  }
 }, 120);
 
 // Restart Game
 function restartGame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
   createCanvas();
   score = 0;
   document.querySelector('#score-p').innerText = score;
@@ -165,4 +169,15 @@ function restartGame() {
   food = new Food(randomFoodPosition(), randomFoodPosition());
   document.getElementsByClassName('over')[0].style.display = 'none';
   document.getElementsByClassName('pop-up')[0].style.display = 'none';
+  interval = setInterval(() => {
+    createCanvas();
+    drawFood(food);
+    moveSnake();
+    drawSnake();
+    foodEaten();
+    gameOver();
+    if (gameOver()) {
+      clearInterval(interval);
+    }
+  }, 120);
 }
