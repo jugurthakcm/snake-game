@@ -100,7 +100,7 @@ function drawSnakePart(snakePart) {
 function drawSnake() {
   ctx.fillStyle = "orange";
   ctx.fillRect(snake[0].x, snake[0].y, 20, 20);
-  ctx.strokeStyle = "#b36200";
+  ctx.strokeStyle = "#764100";
   ctx.strokeRect(snake[0].x, snake[0].y, 20, 20);
 
   for (let i = 1; i < snake.length; i++) {
