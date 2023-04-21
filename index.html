@@ -6,7 +6,7 @@
     <title>Snake Game</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body onload="drawSnake()">
+  <body>
     <div class="container">
       <div class="canvas">
         <canvas id="gameCanvas" width="500px" height="500px"></canvas>
@@ -23,8 +23,11 @@
 
     <div class="over"></div>
     <div class="pop-up">
-      <p>Game Over</p>
+      <h2>Game Over</h2>
       <button onclick="restartGame()">Restart</button>
+    </div>
+    <div class="start-game">
+      <h1>Press any key to start the game</h1>
     </div>
   </body>
   <script src="./app.js"></script>

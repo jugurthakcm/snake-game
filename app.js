@@ -144,8 +144,11 @@ let time = 120;
 // Interval Function
 let interval = setInterval(() => {
   createCanvas();
-
+  document.getElementsByClassName("over")[0].style.display = "block";
+  document.getElementsByClassName("start-game")[0].style.display = "flex";
   if (startGame) {
+    document.getElementsByClassName("over")[0].style.display = "none";
+    document.getElementsByClassName("start-game")[0].style.display = "none";
     drawFood(food);
     moveSnake();
     drawSnake();
