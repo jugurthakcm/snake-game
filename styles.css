@@ -10,7 +10,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 1rem;
 }
 
 .game {
@@ -89,4 +89,36 @@ body {
   z-index: 999;
 
   display: none;
+}
+
+.arrow-keys {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.7rem;
+}
+
+.bottom-group-arrow {
+  display: flex;
+  margin-top: 0.7rem;
+}
+
+.key {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  line-height: 55px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.key-up {
+  line-height: 50px;
+}
+
+.key-down {
+  margin: 0 0.7rem 0 0.7rem;
 }
