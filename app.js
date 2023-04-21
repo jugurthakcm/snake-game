@@ -65,7 +65,7 @@ function drawSnakePart(snakePart) {
 
 // Draw all the snake
 function drawSnake() {
-  snake.forEach(drawSnakePart);
+  return snake.forEach(drawSnakePart);
 }
 
 //Generate Random Positions for the food
@@ -128,31 +128,40 @@ function gameOver() {
     snake[0].y < 0 ||
     snakeDie()
   ) {
-    createCanvas();
     document.getElementsByClassName("over")[0].style.display = "block";
     document.getElementsByClassName("pop-up")[0].style.display = "flex";
     return true;
   }
 }
+
+let startGame = false;
+
+document.addEventListener("keydown", () => {
+  startGame = true;
+});
+
 let time = 120;
 // Interval Function
 let interval = setInterval(() => {
   createCanvas();
-  drawFood(food);
-  moveSnake();
 
-  drawSnake();
-  foodEaten();
-  gameOver();
-  if (gameOver()) {
-    clearInterval(interval);
-  }
+  if (startGame) {
+    drawFood(food);
+    moveSnake();
+    drawSnake();
+    foodEaten();
+    gameOver();
+    if (gameOver()) {
+      clearInterval(interval);
+    }
+  } else return;
 }, time);
 
 // Restart Game
 function restartGame() {
   clearInterval(interval);
-  createCanvas();
+  startGame = false;
+
   score = 0;
   document.querySelector("#score-p").innerText = score;
   snake = [
