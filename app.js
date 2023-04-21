@@ -11,6 +11,13 @@ let dx = 20;
 let dy = 0;
 let score = 0;
 
+// Initialize best score
+let bestScore = localStorage.getItem("bestScore")
+  ? localStorage.getItem("bestScore")
+  : 0;
+
+document.getElementById("bestScore-p").innerText = bestScore;
+
 // Create the canvas
 function createCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -106,7 +113,9 @@ function foodEaten() {
         y: snake[snake.length - 1].y + 20,
       });
       score++;
+      bestScore = score > bestScore ? score : bestScore;
       document.querySelector("#score-p").innerText = score;
+      document.querySelector("#bestScore-p").innerText = bestScore;
     }
   });
 }
@@ -139,6 +148,7 @@ function gameOver() {
   ) {
     document.getElementsByClassName("over")[0].style.display = "block";
     document.getElementsByClassName("pop-up")[0].style.display = "flex";
+    localStorage.setItem("bestScore", bestScore);
     return true;
   }
 }
