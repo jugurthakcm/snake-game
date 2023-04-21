@@ -1,2 +1,5 @@
 # snake-game
-This a basic snake game developed with JavaScript
+
+This is a basic snake game developed with HTML, CSS, JavaScript
+
+Give it a star ★ ! Thank you.

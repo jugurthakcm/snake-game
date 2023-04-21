@@ -62,6 +62,32 @@ function changeDirection(direction) {
   }
 }
 
+// Change direction of the snake using arrows on screen
+document.querySelector(".key-up").addEventListener("click", () => {
+  if (dy == 0) {
+    dx = 0;
+    dy = -20;
+  }
+});
+document.querySelector(".key-down").addEventListener("click", () => {
+  if (dy == 0) {
+    dx = 0;
+    dy = 20;
+  }
+});
+document.querySelector(".key-left").addEventListener("click", () => {
+  if (dx == 0) {
+    dx = -20;
+    dy = 0;
+  }
+});
+document.querySelector(".key-right").addEventListener("click", () => {
+  if (dx == 0) {
+    dx = 20;
+    dy = 0;
+  }
+});
+
 // Draw a part of the snake
 function drawSnakePart(snakePart) {
   ctx.fillStyle = "lightblue";
@@ -153,14 +179,19 @@ function gameOver() {
   }
 }
 
+//Start the game
 let startGame = false;
 
 document.addEventListener("keydown", () => {
   startGame = true;
 });
 
+document.addEventListener("click", () => {
+  startGame = true;
+});
+
 let time = 120;
-// Interval Function
+// Interval Function (Game Runner)
 let interval = setInterval(() => {
   createCanvas();
   document.getElementsByClassName("over")[0].style.display = "block";

@@ -110,6 +110,8 @@ body {
   font-size: 2rem;
   font-weight: bold;
   border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .key-up {
