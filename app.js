@@ -1,5 +1,5 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 let snake = [
   { x: 120, y: 300 },
   { x: 100, y: 300 },
@@ -14,9 +14,9 @@ let score = 0;
 // Create the canvas
 function createCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'lightgreen';
+  ctx.fillStyle = "lightgreen";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.strokeStyle = 'black';
+  ctx.strokeStyle = "black";
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -31,39 +31,35 @@ function moveSnake() {
 document.onkeydown = changeDirection;
 function changeDirection(direction) {
   // Press arrow key UP
-  if (direction.keyCode == '38' && dy == 0) {
+  if (direction.keyCode == "38" && dy == 0) {
     dx = 0;
     dy = -20;
-    moveSnake();
   }
 
   // Press arrow key DOWN
-  if (direction.keyCode == '40' && dy == 0) {
+  if (direction.keyCode == "40" && dy == 0) {
     dx = 0;
     dy = 20;
-    moveSnake();
   }
 
   // Press arrow key LEFT
-  if (direction.keyCode == '37' && dx == 0) {
+  if (direction.keyCode == "37" && dx == 0) {
     dx = -20;
     dy = 0;
-    moveSnake();
   }
 
   // Press arrow key RIGHT
-  if (direction.keyCode == '39' && dx == 0) {
+  if (direction.keyCode == "39" && dx == 0) {
     dx = 20;
     dy = 0;
-    moveSnake();
   }
 }
 
 // Draw a part of the snake
 function drawSnakePart(snakePart) {
-  ctx.fillStyle = 'lightblue';
+  ctx.fillStyle = "lightblue";
   ctx.fillRect(snakePart.x, snakePart.y, 20, 20);
-  ctx.strokeStyle = 'darkblue';
+  ctx.strokeStyle = "darkblue";
   ctx.strokeRect(snakePart.x, snakePart.y, 20, 20);
 }
 
@@ -101,16 +97,16 @@ function foodEaten() {
         y: snake[snake.length - 1].y + 20,
       });
       score++;
-      document.querySelector('#score-p').innerText = score;
+      document.querySelector("#score-p").innerText = score;
     }
   });
 }
 
 // Draw the food on the canvas
 function drawFood(param) {
-  ctx.fillStyle = 'red';
+  ctx.fillStyle = "red";
   ctx.fillRect(param.x, param.y, 20, 20);
-  ctx.strokeStyle = 'darkred';
+  ctx.strokeStyle = "darkred";
   ctx.strokeRect(param.x, param.y, 20, 20);
 }
 
@@ -133,8 +129,8 @@ function gameOver() {
     snakeDie()
   ) {
     createCanvas();
-    document.getElementsByClassName('over')[0].style.display = 'block';
-    document.getElementsByClassName('pop-up')[0].style.display = 'flex';
+    document.getElementsByClassName("over")[0].style.display = "block";
+    document.getElementsByClassName("pop-up")[0].style.display = "flex";
     return true;
   }
 }
@@ -144,6 +140,7 @@ let interval = setInterval(() => {
   createCanvas();
   drawFood(food);
   moveSnake();
+
   drawSnake();
   foodEaten();
   gameOver();
@@ -157,7 +154,7 @@ function restartGame() {
   clearInterval(interval);
   createCanvas();
   score = 0;
-  document.querySelector('#score-p').innerText = score;
+  document.querySelector("#score-p").innerText = score;
   snake = [
     { x: 120, y: 300 },
     { x: 100, y: 300 },
@@ -168,8 +165,8 @@ function restartGame() {
   dx = 20;
   dy = 0;
   food = new Food(randomFoodPosition(), randomFoodPosition());
-  document.getElementsByClassName('over')[0].style.display = 'none';
-  document.getElementsByClassName('pop-up')[0].style.display = 'none';
+  document.getElementsByClassName("over")[0].style.display = "none";
+  document.getElementsByClassName("pop-up")[0].style.display = "none";
   interval = setInterval(() => {
     createCanvas();
     drawFood(food);
