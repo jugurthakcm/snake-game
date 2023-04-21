@@ -65,7 +65,16 @@ function drawSnakePart(snakePart) {
 
 // Draw all the snake
 function drawSnake() {
-  return snake.forEach(drawSnakePart);
+  ctx.fillStyle = "orange";
+  ctx.fillRect(snake[0].x, snake[0].y, 20, 20);
+  ctx.strokeStyle = "#b36200";
+  ctx.strokeRect(snake[0].x, snake[0].y, 20, 20);
+
+  for (let i = 1; i < snake.length; i++) {
+    drawSnakePart(snake[i]);
+  }
+
+  // return snake.forEach(drawSnakePart);
 }
 
 //Generate Random Positions for the food
