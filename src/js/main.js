@@ -213,7 +213,7 @@ let interval = setInterval(() => {
 // Restart Game
 function restartGame() {
   clearInterval(interval);
-  startGame = false;
+  startGame = true;
 
   score = 0;
   document.querySelector("#score-p").innerText = score;
