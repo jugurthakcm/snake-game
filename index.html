@@ -8,20 +8,21 @@
   </head>
   <body>
     <div class="container">
-      <div class="game">
-        <div class="dashboard">
-          <div class="score current-score">
-            <span>Score: <span id="score-p">0</span></span>
+      <div class="gameContainer">
+        <div class="game">
+          <div class="dashboard">
+            <div class="score current-score">
+              <span>Score: <span id="score-p">0</span></span>
+            </div>
+            <div class="score best-score">
+              <span>Best Score: <span id="bestScore-p">0</span></span>
+            </div>
           </div>
-          <div class="score best-score">
-            <span>Best Score: <span id="bestScore-p">0</span></span>
+
+          <div class="canvas">
+            <canvas id="gameCanvas" width="500px" height="500px"></canvas>
           </div>
         </div>
-
-        <div class="canvas">
-          <canvas id="gameCanvas" width="500px" height="500px"></canvas>
-        </div>
-
         <div class="arrow-keys">
           <div class="top-group-arrow"><div class="key key-up">↑</div></div>
           <div class="bottom-group-arrow">
@@ -38,7 +39,7 @@
         <button class="restart-btn" onclick="restartGame()">Restart</button>
       </div>
       <div class="start-game">
-        <h1>Press any key to start the game</h1>
+        <h1>Press any key to start the game !</h1>
       </div>
     </div>
   </body>

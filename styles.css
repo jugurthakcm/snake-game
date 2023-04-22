@@ -10,11 +10,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
 }
 
-.game {
+.gameContainer {
   width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
 }
 
 .canvas {
@@ -86,6 +89,12 @@ body {
   color: white;
   z-index: 999;
   display: none;
+  width: 100vw;
+  justify-content: center;
+}
+
+.start-game h1 {
+  text-align: center;
 }
 
 .arrow-keys {
@@ -120,4 +129,11 @@ body {
 
 .key-down {
   margin: 0 0.7rem 0 0.7rem;
+}
+
+@media (max-width: 500px) {
+  .gameContainer,
+  #gameCanvas {
+    width: 100vw;
+  }
 }
