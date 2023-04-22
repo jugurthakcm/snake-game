@@ -17,7 +17,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 100vh;
+  height: 90vh;
+  padding-top: 1rem;
 }
 
 .canvas {
@@ -62,6 +63,7 @@ body {
   border-radius: 10px;
   display: none;
   padding: 1rem 4rem;
+  width: 100vw;
 }
 
 .pop-up h1 {
@@ -135,5 +137,6 @@ body {
   .gameContainer,
   #gameCanvas {
     width: 100vw;
+    padding-top: 0;
   }
 }

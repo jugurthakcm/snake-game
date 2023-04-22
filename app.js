@@ -190,7 +190,7 @@ document.addEventListener("click", () => {
   startGame = true;
 });
 
-let time = 120;
+let time = 110;
 // Interval Function (Game Runner)
 let interval = setInterval(() => {
   createCanvas();
