@@ -241,3 +241,7 @@ function restartGame() {
     }
   }, time);
 }
+
+document
+  .querySelector(".restart-btn")
+  .addEventListener("click", () => restartGame());
